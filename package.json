@@ -9,8 +9,11 @@
   },
   "author": "alexh",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "client-request": "^1.0.1"
+  },
   "devDependencies": {
+    "nock": "^7.0.2",
     "standard": "^6.0.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.4.0"

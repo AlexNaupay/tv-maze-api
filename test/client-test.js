@@ -11,3 +11,9 @@ test('should create a client', function(t){  // t = test object
     t.ok(client instanceof Client, 'should be a instance of Client');
     t.end();
 });
+
+test('should retrieve a list shows', function(t){
+    var client = tvmaze.createClient();
+    t.equals(typeof client.shows, 'function', 'should be a function');
+    t.end();
+});
