@@ -1,0 +1,18 @@
+{
+  "name": "tv-maze-api",
+  "version": "0.0.1",
+  "description": "api",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*-test.js"
+  },
+  "author": "alexh",
+  "license": "ISC",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "tape": "^4.4.0",
+    "tap-spec": "^4.1.1"
+  }
+}
