@@ -1,5 +1,7 @@
-function createClient(){
+var Client = require('./lib/Client');
 
+function createClient(){
+    return new Client();
 }
 
 
