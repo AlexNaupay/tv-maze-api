@@ -1,6 +1,6 @@
 var test = require('tape');  // library for test with TAP standart
 var tvmaze = require('../');
-var Client = require('../lib/Client');
+var Client = require('../lib/client');
 
 test('should create a client', function(t){  // t = test object
     t.ok(tvmaze.createClient, 'should exist object');
