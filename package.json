@@ -13,6 +13,7 @@
     "client-request": "^1.0.1"
   },
   "devDependencies": {
+    "istanbul": "^0.4.2",
     "nock": "^7.0.2",
     "standard": "^6.0.1",
     "tap-spec": "^4.1.1",

@@ -51,3 +51,23 @@ test('should retrieve a list shows when search shows', function(t){
     });
 
 });
+
+test('should retrieve a show', function(t){
+    var client = tvmaze.createClient({endpoint: ENDPOINT_TEST});
+    var id = 15;
+
+    t.ok(typeof client.show, 'function', 'should be a function object');
+
+    nock(ENDPOINT_TEST)
+        .get('/shows/'+id)
+        .reply(200, {id: 5, name:'alexh'});
+
+    client.show(id, function(err, show){
+        t.error(err, 'should not be an error');
+        t.ok(typeof show, 'object', 'should be an object');
+        t.ok(show.id, id, 'should retrieve an object with id: '+id);
+        t.ok(show.name, 'alexh', 'should retrieve an object with name: alexh');
+        t.end();
+    });
+
+});
