@@ -71,3 +71,54 @@ test('should retrieve a show', function(t){
     });
 
 });
+
+
+test('should fail with unknown endpoint', function(t){
+    var client = tvmaze.createClient({endpoint: ENDPOINT_TEST});
+
+    t.ok(typeof client._request, 'function', 'should be a function object');
+
+    nock(ENDPOINT_TEST)
+        .get('/foo')
+        .reply(404);
+
+    client._request('GET', '/foo', null, function(err, data){
+        t.ok(err, 'should be an error');
+        t.end();
+    });
+});
+
+test('should fail without q parameter', function(t){
+    var client = tvmaze.createClient({endpoint: ENDPOINT_TEST});
+    t.ok(typeof client._request, 'function', 'should be a function object');
+
+    nock(ENDPOINT_TEST)
+        .get('/search/shows')
+        .reply(400, {
+            code: 0,
+            status: 400,
+            name: 'bad request',
+            message: 'missing required parameters: q'
+        });
+
+    client._request('GET', '/search/shows', null, function(err, data){
+        t.ok(err, 'should be an error');
+        t.notOk(data, 'should not ok');
+        t.end();
+    });
+});
+
+test('should use default method if not method passed', function(t){
+    var client = tvmaze.createClient({endpoint: ENDPOINT_TEST});
+
+    nock(ENDPOINT_TEST)
+        .get('/search/shows')
+        .query({q: 'goku'})
+        .reply(200, [{name:'goku'}]);
+
+    client._request(undefined, '/search/shows', {q: 'goku'}, function(err, data){
+        t.error(err, 'should not be an error');
+        t.ok(data, 'should be valid data');
+        t.end();
+    });
+});
